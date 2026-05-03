@@ -1,0 +1,22 @@
+# Python / Flask
+server/__pycache__/
+server/**/*.pyc
+server/.env
+server/*.db
+server/.venv/
+server/venv/
+*.egg-info/
+
+# Node / Vite
+client/node_modules/
+client/dist/
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+
+# Tools
+.vercel/
+*.log
+.DS_Store
