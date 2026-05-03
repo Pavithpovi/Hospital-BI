@@ -52,6 +52,13 @@ Demo logins (after seed): see login screen hints (`admin@medvista.com`, etc.).
 
 > The Python API is not run on Vercel. Host it on [Render](https://render.com), [Railway](https://railway.app), or similar, then set `VITE_API_URL` and redeploy the Vercel project if the API URL changes.
 
+## Login / “Network Error” on Vercel
+
+1. In Vercel → **Settings → Environment Variables** (Production), set **`VITE_API_URL`** to your **public Flask base URL** including `/api`, e.g. `https://your-api.onrender.com/api`.
+2. **Redeploy** after saving env vars (Vite bakes this in at build time).
+3. On the Flask server, set **`FRONTEND_ORIGINS`** to your Vercel URL (e.g. `https://your-app.vercel.app`) so CORS allows the browser.
+4. Local dev: run **`python app.py`** in `server/` before opening the client — demo users exist after **`python seed_data.py`**.
+
 ## Environment files
 
 - `client/env.example` — copy to `.env.production` locally or mirror keys in Vercel.

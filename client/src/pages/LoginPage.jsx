@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
+import { formatAuthError } from '../lib/authErrors';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,7 +21,7 @@ export default function LoginPage() {
       const routes = { admin: '/admin', doctor: '/doctor', patient: '/patient' };
       navigate(routes[user.role] || '/');
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed. Please try again.');
+      setError(formatAuthError(err, 'login'));
     } finally {
       setLoading(false);
     }

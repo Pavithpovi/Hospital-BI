@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
+import { formatAuthError } from '../lib/authErrors';
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -29,7 +30,7 @@ export default function RegisterPage() {
       await register({ ...form, role: 'patient' });
       navigate('/patient');
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed');
+      setError(formatAuthError(err, 'register'));
     } finally {
       setLoading(false);
     }
